@@ -1,0 +1,10 @@
+{
+  "ignore": [
+      "user_files/*"
+    ],
+    "watch": [
+      "server.js",
+      ".env"
+    ],
+    "verbose": true
+}
