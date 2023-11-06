@@ -124,3 +124,14 @@
             <div class="form__input-error-message"></div>
             <button class="form__button" type="submit" oneclick="getInfo()">Continue</button>
           </div>
+
+var username = document.getElementById('username').value
+	var password = document.getElementById('password').value
+
+	for(var i = 0; i < objPeople.length; i++) {
+		if(username == objPeople[i].username && password == objPeople[i].password) {
+			window.location.href="index.html"
+			return
+		}
+	}
+	console.log("incorrect username or password")

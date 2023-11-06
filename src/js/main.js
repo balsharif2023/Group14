@@ -15,14 +15,5 @@ var objPeople = [
 ]
 
 function getInfo() {
-	var username = document.getElementById('username').value
-	var password = document.getElementById('password').value
-
-	for(var i = 0; i < objPeople.length; i++) {
-		if(username == objPeople[i].username && password == objPeople[i].password) {
-			window.location.href="index.html"
-			return
-		}
-	}
-	console.log("incorrect username or password")
+			window.location.assign('https://financial-insights.glitch.me/index.html');
 }
