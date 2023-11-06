@@ -20,7 +20,7 @@ function getInfo() {
 
 	for(var i = 0; i < objPeople.length; i++) {
 		if(username == objPeople[i].username && password == objPeople[i].password) {
-			window.location.href="plaid.html"
+			window.location.href="index.html"
 			return
 		}
 	}
