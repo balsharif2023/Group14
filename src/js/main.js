@@ -1,7 +1,7 @@
 var objPeople = [
 	{
-		username: "sam",
-		password: "codify"
+		username: "test_user",
+		password: "password"
 	},
 	{
 		username: "matt",
@@ -20,7 +20,7 @@ function getInfo() {
 
 	for(var i = 0; i < objPeople.length; i++) {
 		if(username == objPeople[i].username && password == objPeople[i].password) {
-			console.log(username + " is logged in!!!")
+			window.location.href="plaid.html"
 			return
 		}
 	}
