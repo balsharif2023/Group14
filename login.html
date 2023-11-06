@@ -96,15 +96,6 @@
             />
             <div class="form__input-error-message"></div>
           </div>
-          <button class="form__button" type="submit">Continue</button>
-          <p class="form__text">
-            <a href="#" class="form__link">Forgot your password?</a>
-          </p>
-          <p class="form__text">
-            <a class="form__link" href="./" id="linkCreateAccount"
-              >Don't have an account? Create account</a
-            >
-          </p>
         </form>
         <form class="form form--hidden" id="createAccount">
           <h1 class="form__title">Create Account</h1>
@@ -146,11 +137,8 @@
             />
             <div class="form__input-error-message"></div>
           </div>
-          <button class="form__button" type="submit">Continue</button>
+          <button class="form__button" type="submit" oneclick="getInfo()">Continue</button>
           <p class="form__text">
-            <a class="form__link" href="./" id="linkLogin"
-              >Already have an account? Sign in</a
-            >
           </p>
         </form>
         <div class="col-md-4"></div>
@@ -198,6 +186,7 @@
       <!-- sidebar -->
       <script src="src/js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="src/js/custom.js"></script>
+      <script src="src/js/main.js"></script>
       <!-- javascript -->
       <script src="src/js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
