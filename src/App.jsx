@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import axios from "axios";
 import { usePlaidLink } from "react-plaid-link";
-import TransactionList from "./Comps/TransactionList";
 
 axios.defaults.baseURL = "https://ex-b-2288a4ac4763.herokuapp.com";
 
@@ -40,7 +39,6 @@ function PlaidAuth({ publicToken }) {
       <>
         <p>Account number: {account.account}</p>
         <p>Routing number: {account.routing}</p>
-        <TransactionList transactions={transactions.data} />
       </>
     )
   );
