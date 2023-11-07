@@ -24,7 +24,6 @@ function PlaidAuth({ publicToken }) {
         access_token: accessToken.data.accessToken,
       });
       setTransactions(_transactions);
-
       if (transactions && transactions.data) {
         console.log(transactions.data);
         // console.log(_transactions);
