@@ -82,7 +82,7 @@ submitButton.addEventListener("click", function() {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.assign('https://financial-insights.glitch.me/')
+      window.location.assign('https://financial-insights.glitch.me/mainsite/index.html')
       // ...
     })
     .catch((error) => {
