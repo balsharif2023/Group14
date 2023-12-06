@@ -82,7 +82,7 @@ submitButton.addEventListener("click", function() {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.assign('https://financial-insights.glitch.me/mainsite/index.html')
+      window.location.assign('https://6570b4eafde04d1f14fe38d7--cool-chimera-1476a6.netlify.app/')
       // ...
     })
     .catch((error) => {
