@@ -21,7 +21,11 @@ const signupButton = document.getElementById("sign-up");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
-const createacct = document.getElementById("create-acct")
+const createacct = document.getElementById("create-acct");
+const resetpasswordbutton = document.getElementById("reset-password-bttn");
+
+const resetpassword = document.getElementById("email-reset");
+const resetbutton = document.getElementById("reset-bttn");
 
 const signupEmailIn = document.getElementById("email-signup");
 const confirmSignupEmailIn = document.getElementById("confirm-email-signup");
@@ -54,6 +58,12 @@ createacctbtn.addEventListener("click", function() {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
+  
+  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
+    window.alert("Please fill out all required fields.");
+    isVerified = false;
+  }
+  const resetpassword = document.getElementById("email-reset");
   
   if(isVerified) {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
@@ -94,6 +104,16 @@ submitButton.addEventListener("click", function() {
 });
 
 signupButton.addEventListener("click", function() {
+    main.style.display = "none";
+    createacct.style.display = "block";
+});
+
+resetpasswordbutton.addEventListener("click", function() {
+    main.style.display = "none";
+    createacct.style.display = "block";
+});
+
+resetbutton.addEventListener("click", function() {
     main.style.display = "none";
     createacct.style.display = "block";
 });
