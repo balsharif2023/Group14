@@ -93,26 +93,23 @@ createacctbtn.addEventListener("click", function () {
       });
   }
 });
-
+/*
 //reset password
 
 resetbutton.addEventListener("click", function () {
   var isVerified = true;
 
   resetPasswordEmail = resetpassword.value;
-
+  
+if (isVerified) {
+      }
   if (resetPasswordEmail == null) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   } else {
   }
-  resetpasswordbutton.addEventListener("click", function () {
-    var isverified = true;
-    main.style.display = "none";
-    reset.style.display = "block";
-  });
 });
-
+*/
 //submit button on main
 submitButton.addEventListener("click", function () {
   email = emailInput.value;
@@ -137,10 +134,12 @@ submitButton.addEventListener("click", function () {
     });
 });
 
+/*
 //reset button on main
 resetpasswordbutton.addEventListener("click", function () {
   main.style.display = "block";
 });
+*/
 
 //sign up on main
 signupButton.addEventListener("click", function () {
