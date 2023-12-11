@@ -35,7 +35,7 @@ const createacctbtn = document.getElementById("create-acct-btn");
 
 const returnBtn = document.getElementById("return-btn");
 
-var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword;
+var email, password, signupEmail, signupPassword, confirmSignupEmail, confirmSignUpPassword,resetPasswordEmail;
 
 createacctbtn.addEventListener("click", function() {
   var isVerified = true;
@@ -59,11 +59,13 @@ createacctbtn.addEventListener("click", function() {
     isVerified = false;
   }
   
-  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
+  resetPasswordEmail = resetpassword.value;
+  if(resetPasswordEmail == null)
+  {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
-  const resetpassword = document.getElementById("email-reset");
+  
   
   if(isVerified) {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
@@ -72,6 +74,7 @@ createacctbtn.addEventListener("click", function() {
       const user = userCredential.user;
       // ...
       window.alert("Success! Account created.");
+      
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -102,6 +105,8 @@ submitButton.addEventListener("click", function() {
       window.alert("Error occurred. Try again.");
     });
 });
+
+
 
 signupButton.addEventListener("click", function() {
     main.style.display = "none";
