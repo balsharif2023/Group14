@@ -75,10 +75,11 @@ createacctbtn.addEventListener("click", function() {
     });
   }
 });
+
 resetpasswordbutton.addEventListener("click", function() {
     var isverified = true;
     main.style.display = "none";
-    createacct.style.display = "block";
+    resetpasswordbutton.style.display = "block";
     
 });
 
@@ -104,7 +105,7 @@ submitButton.addEventListener("click", function() {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.assign('https://6570b4eafde04d1f14fe38d7--cool-chimera-1476a6.netlify.app/')
+      window.location.assign('https://65777176294e9440bad967c4--musical-nasturtium-e6f447.netlify.app/')
       // ...
     })
     .catch((error) => {
