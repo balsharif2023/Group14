@@ -23,6 +23,7 @@ const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
 const createacct = document.getElementById("create-acct");
 const resetpasswordbutton = document.getElementById("reset-password-bttn");
+const resetform = document.getElementById("reset-password");
 
 const resetpassword = document.getElementById("email-reset");
 const resetbutton = document.getElementById("reset-bttn");
@@ -76,13 +77,6 @@ createacctbtn.addEventListener("click", function() {
   }
 });
 
-resetpasswordbutton.addEventListener("click", function() {
-    var isverified = true;
-    main.style.display = "none";
-    resetpasswordbutton.style.display = "block";
-    
-});
-
 resetbutton.addEventListener("click", function() {
   var isVerified = true;
   
@@ -93,6 +87,16 @@ resetbutton.addEventListener("click", function() {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   }
+  else
+    {
+      
+    }
+  resetpasswordbutton.addEventListener("click", function() {
+    var isverified = true;
+    main.style.display = "none";
+    resetform.style.display = "block";
+    
+});
 });
 
 submitButton.addEventListener("click", function() {
