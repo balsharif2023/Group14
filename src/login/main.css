@@ -54,11 +54,11 @@ input, button {
   width: 40vw;
   margin-left: 30vw;
   /* vertical align */
-  height: 70vh;
+  height: 80vh;
   margin-top: 15vh;
 }
 
-#submit, #create-acct-btn {
+#submit, #create-acct-btn, #reset-password-bttn {
   background-color: #0583D2;
   color: white;
   border: none;
