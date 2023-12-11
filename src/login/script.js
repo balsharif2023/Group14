@@ -57,16 +57,7 @@ createacctbtn.addEventListener("click", function() {
   if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
-  }
-  
-  resetPasswordEmail = resetpassword.value;
-  if(resetPasswordEmail == null)
-  {
-    window.alert("Please fill out all required fields.");
-    isVerified = false;
-  }
-  
-  
+  }  
   if(isVerified) {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
       .then((userCredential) => {
@@ -82,6 +73,24 @@ createacctbtn.addEventListener("click", function() {
       // ..
       window.alert("Error occurred. Try again.");
     });
+  }
+});
+resetpasswordbutton.addEventListener("click", function() {
+    var isverified = true;
+    main.style.display = "none";
+    createacct.style.display = "block";
+    
+});
+
+resetbutton.addEventListener("click", function() {
+  var isVerified = true;
+  
+  resetPasswordEmail = resetpassword.value;
+  
+  if(resetPasswordEmail == null)
+  {
+    window.alert("Please fill out all required fields.");
+    isVerified = false;
   }
 });
 
@@ -113,15 +122,6 @@ signupButton.addEventListener("click", function() {
     createacct.style.display = "block";
 });
 
-resetpasswordbutton.addEventListener("click", function() {
-    main.style.display = "none";
-    createacct.style.display = "block";
-});
-
-resetbutton.addEventListener("click", function() {
-    main.style.display = "none";
-    createacct.style.display = "block";
-});
 
 returnBtn.addEventListener("click", function() {
     main.style.display = "block";

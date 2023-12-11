@@ -79,6 +79,10 @@ button:hover {
   display: none;
 }
 
+#reset-password {
+  border: none;
+}
+
 #return-btn {
   background: none;
   color: grey;
