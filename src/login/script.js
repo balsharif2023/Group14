@@ -114,13 +114,17 @@ resetbutton.addEventListener("click", function () {
       window.alert("Error occurred. Try again.");
     }); */
 // Admin SDK API to generate the email verification link.
+// Admin SDK API to generate the password reset link.
 getAuth()
-  .generateEmailVerificationLink(useremail, actionCodeSettings)
+  .generatePasswordResetLink(resetPasswordEmail, ActionCodeSettings)
   .then((link) => {
-  
-    // Construct email verification template, embed the link and send
-    // using custom SMTP server.
-    return sendCustomVerificationEmail(useremail, displayName, link);
+  <p>Hello,</p>
+  <p>Follow this link to reset your %APP_NAME% password for your %EMAIL% account.</p>
+  <p><a href='%LINK%'>%LINK%</a></p>
+  <p>If you didn’t ask to reset your password, you can ignore this email.</p>
+  <p>Thanks,</p>
+  <p>Your %APP_NAME% team</p>
+    return sendPasswordResetEmail(resetPasswordEmail, link);
   })
   .catch((error) => {
     // Some error occurred.
