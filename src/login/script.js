@@ -28,6 +28,7 @@ const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
 const createacct = document.getElementById("create-acct");
 const resetpasswordbutton = document.getElementById("reset");
+const reset = document.getElementById("reset-password");
 
 const resetpassword = document.getElementById("email-reset");
 const resetbutton = document.getElementById("reset-bttn");
@@ -96,9 +97,9 @@ createacctbtn.addEventListener("click", function () {
 //reset password
 
 resetbutton.addEventListener("click", function () {
-  main.style.display = "none";
-  createacct.style.display = "none";
-  reset.style.display = "block";
+  main.style.display = "block";
+  createacct.style.display = "block";
+  reset.style.display = "none";
   
   var isVerified = true;
 
@@ -112,7 +113,8 @@ app.auth().sendPasswordResetEmail(resetPasswordEmail).then(() => {
 });
 
 //submit button on main
-submitButton.addEventListener("click", function () {
+
+submitButton.addEventListener("click", function() {
   email = emailInput.value;
   console.log(email);
   password = passwordInput.value;
@@ -122,9 +124,8 @@ submitButton.addEventListener("click", function () {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.assign(
-        "https://65777176294e9440bad967c4--musical-nasturtium-e6f447.netlify.app/"
-      );
+      console.log("Success! Welcome back!");
+      window.alert("Success! Welcome back!");
       // ...
     })
     .catch((error) => {
@@ -136,30 +137,64 @@ submitButton.addEventListener("click", function () {
 });
 
 
-//reset button on main
-resetpasswordbutton.addEventListener("click", function () {
-  main.style.display = "block";
-  createacct.style.display = "none";
-  reset.style.display = "none";
+signupButton.addEventListener("click", function() {
+    main.style.display = "none";
+    createacct.style.display = "block";
 });
 
+returnBtn.addEventListener("click", function() {
+    main.style.display = "block";
+    createacct.style.display = "none";
+});
 
-//sign up on main
-signupButton.addEventListener("click", function () {
+//reset button on main
+resetpasswordbutton.addEventListener("click", function () {
   main.style.display = "none";
+  createacct.style.display = "block";
+  reset.style.display = "block";
+});
+
+returnBtn2.addEventListener("click", function () {
+  main.style.display = "block";
   createacct.style.display = "block";
   reset.style.display = "none";
 });
 
-//return on createacct
-returnBtn.addEventListener("click", function () {
-  main.style.display = "block";
-  createacct.style.display = "none";
-  reset.style.display = "none";
-});
+createacctbtn.addEventListener("click", function() {
+  var isVerified = true;
 
-returnBtn2.addEventListener("click", function () {
-  main.style.display = "none";
-  createacct.style.display = "none";
-  reset.style.display = "block";
+  signupEmail = signupEmailIn.value;
+  confirmSignupEmail = confirmSignupEmailIn.value;
+  if(signupEmail != confirmSignupEmail) {
+      window.alert("Email fields do not match. Try again.")
+      isVerified = false;
+  }
+
+  signupPassword = signupPasswordIn.value;
+  confirmSignUpPassword = confirmSignUpPasswordIn.value;
+  if(signupPassword != confirmSignUpPassword) {
+      window.alert("Password fields do not match. Try again.")
+      isVerified = false;
+  }
+  
+  if(signupEmail == null || confirmSignupEmail == null || signupPassword == null || confirmSignUpPassword == null) {
+    window.alert("Please fill out all required fields.");
+    isVerified = false;
+  }
+  
+  if(isVerified) {
+    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+      window.alert("Success! Account created.");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      window.alert("Error occurred. Try again.");
+    });
+  }
 });

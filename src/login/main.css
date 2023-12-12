@@ -80,10 +80,10 @@ button:hover {
 }
 
 #reset-password {
-  border: none;
+  display: none;
 }
 
-#return-btn {
+#return-btn, #return-btn2 {
   background: none;
   color: grey;
   text-decoration: underline;
