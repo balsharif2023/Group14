@@ -28,7 +28,6 @@ const passwordInput = document.getElementById("password");
 const main = document.getElementById("main");
 const createacct = document.getElementById("create-acct");
 const resetpasswordbutton = document.getElementById("reset");
-const reset = document.getElementById("reset-password");
 
 const resetpassword = document.getElementById("email-reset");
 const resetbutton = document.getElementById("reset-bttn");
@@ -105,22 +104,11 @@ resetbutton.addEventListener("click", function () {
 
   resetPasswordEmail = resetpassword.value;
   
+app.auth().sendPasswordResetEmail(resetPasswordEmail).then(() => {
+  console.log('email sent!');
 }).catch(function(error) {
   // An error happened.
 });
-if (isVerified) {
-      }
-  if (resetPasswordEmail == null) {
-    window.alert("Please fill out all required fields.");
-    isVerified = false;
-  } else {
-    sendPasswordResetEmail(resetPasswordEmail).then(() => {
-  console.log('email sent!');})
-      .catch((error) {
-
-});
-      
-  }
 });
 
 //submit button on main
