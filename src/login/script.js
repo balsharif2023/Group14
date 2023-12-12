@@ -99,54 +99,10 @@ createacctbtn.addEventListener("click", function () {
 
 //reset password
 resetbutton.addEventListener("click", function () {
-
+  window.alert("Email Sent!");
+  console.log("email sent!");
+  window.location.assign("https://financial-insights.glitch.me/signin.html");
 });
-/*
-const sendResetEmail = async (email, name, link, companyName) => {
-  return await courier.send({
-    message: {
-          template: "AECHDSTFTVMCXSKKGYNT4F65ED5Q",
-              to: {
-                email: email
-          },
-          routing: {
-                method: "single",
-                channels: ["email"]
-          },
-          data: {
-              userName: name,
-                passwordResetLink: link,
-              companyName:companyName
-          }
-    },
-  });
-}
-
-resetbutton.addEventListener("click", function () {
-  resetPasswordEmail = resetpassword.value;
-  app.sendPasswordResetEmail(resetPasswordEmail)
-    .then(() => {
-      console.log("email sent!");
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("Error occurred. Try again.");
-      window.alert("Error occurred. Try again.");
-    }); 
-// Admin SDK API to generate the email verification link.
-// Admin SDK API to generate the password reset link.
-  firebaseAdmin.auth().generatePasswordResetLink(email)
-    .then(async (link) => {
-          return await sendResetEmail(email, name, JSON.stringify(link), companyName)
-    })
-    .catch((error) => {
-          console.log('Error fetching user data:', error);
-    });
-
-});
-*/
-//submit button on main
 
 submitButton.addEventListener("click", function () {
   email = emailInput.value;
@@ -158,7 +114,9 @@ submitButton.addEventListener("click", function () {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      window.location.assign('https://65777176294e9440bad967c4--musical-nasturtium-e6f447.netlify.app/');
+      window.location.assign(
+        "https://65777176294e9440bad967c4--musical-nasturtium-e6f447.netlify.app/"
+      );
       // ...
     })
     .catch((error) => {
