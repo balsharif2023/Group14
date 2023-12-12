@@ -214,8 +214,7 @@ submitButton.addEventListener("click", function () {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      console.log("Success! Welcome back!");
-      window.alert("Success! Welcome back!");
+      window.location.href = "https://65777176294e9440bad967c4--musical-nasturtium-e6f447.netlify.app/";
       // ...
     })
     .catch((error) => {
