@@ -8,9 +8,17 @@ import {
   ActionCodeSettings
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+const firebaseAdminServiceAccount = require("./serviceAccountKey.json");
+const firebaseAdmin = require('firebase-admin');
+firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(firebaseAdminServiceAccount)
+});
+
 const actionCodeSettings = {
   url: 'https://financial-insights.glitch.me/signin.html',
 };
+const { CourierClient } = require("@trycourier/courier");
+const courier = CourierClient({ authorizationToken: "pk_prod_C9G32R67HG4D3JKFEPNWWR3PW8KM" });
 
 const firebaseConfig = {
   apiKey: "AIzaSyCSTmzYfSzvHu-yavkMfaHzV0R35JVtlzA",
@@ -119,25 +127,7 @@ resetbutton.addEventListener("click", function () {
     }); */
 // Admin SDK API to generate the email verification link.
 // Admin SDK API to generate the password reset link.
-getAuth()
-  .generatePasswordResetLink(resetPasswordEmail, ActionCodeSettings)
-  .then((link) => {
-  <div>
-  <p>Hello,</p>
-  <p>Follow this link to reset your %APP_NAME% password for your %EMAIL% account.</p>
-  <p><a href='%LINK%'>%LINK%</a></p>
-  <p>If you didn’t ask to reset your password, you can ignore this email.</p>
-  <p>Thanks,</p>
-  <p>Your Financial Insights team</p>
-  </div>
-    return sendPasswordResetEmail(resetPasswordEmail, link);
-  })
-  .catch((error) => {
-          const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("Error occurred. Try again.");
-      window.alert("Error occurred. Try again.")
-  });
+
 });
 
 //submit button on main
