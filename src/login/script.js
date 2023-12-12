@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
+  ActionCodeSettings
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
@@ -100,11 +101,9 @@ createacctbtn.addEventListener("click", function () {
 //reset password
 
 resetbutton.addEventListener("click", function () {
-  var isVerified = true;
-
   resetPasswordEmail = resetpassword.value;
 
-  app.sendPasswordResetEmail(resetPasswordEmail)
+  /*app.sendPasswordResetEmail(resetPasswordEmail)
     .then(() => {
       console.log("email sent!");
     })
@@ -113,7 +112,19 @@ resetbutton.addEventListener("click", function () {
       const errorMessage = error.message;
       console.log("Error occurred. Try again.");
       window.alert("Error occurred. Try again.");
-    });
+    }); */
+// Admin SDK API to generate the email verification link.
+getAuth()
+  .generateEmailVerificationLink(useremail, actionCodeSettings)
+  .then((link) => {
+  
+    // Construct email verification template, embed the link and send
+    // using custom SMTP server.
+    return sendCustomVerificationEmail(useremail, displayName, link);
+  })
+  .catch((error) => {
+    // Some error occurred.
+  });
 });
 
 //submit button on main
@@ -143,13 +154,13 @@ submitButton.addEventListener("click", function () {
 signupButton.addEventListener("click", function () {
   main.style.display = "none";
   createacct.style.display = "block";
-  reset.style.display = 
+  reset.style.display = "none";
 });
 
 returnBtn.addEventListener("click", function () {
   main.style.display = "block";
   createacct.style.display = "none";
-  
+  reset.style.display = "none";
 });
 
 //reset button on main
@@ -161,5 +172,6 @@ resetpasswordbutton.addEventListener("click", function () {
 
 returnBtn2.addEventListener("click", function () {
   main.style.display = "block";
-  createacct.style.display = "block";
+  createacct.style.display = "none";
+  reset.style.display = "none";
 });
