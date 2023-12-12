@@ -58,7 +58,7 @@ input, button {
   margin-top: 15vh;
 }
 
-#submit, #create-acct-btn, #reset-password-bttn {
+#submit, #create-acct-btn, #reset-password-bttn, #reset, #reset-bttn {
   background-color: #0583D2;
   color: white;
   border: none;
