@@ -4,6 +4,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
 const firebaseConfig = {
@@ -35,12 +36,11 @@ const resetbutton = document.getElementById("reset-bttn");
 const signupEmailIn = document.getElementById("email-signup");
 const confirmSignupEmailIn = document.getElementById("confirm-email-signup");
 const signupPasswordIn = document.getElementById("password-signup");
-const confirmSignUpPasswordIn = document.getElementById(
-  "confirm-password-signup"
-);
+const confirmSignUpPasswordIn = document.getElementById("confirm-password-signup");
 const createacctbtn = document.getElementById("create-acct-btn");
 
 const returnBtn = document.getElementById("return-btn");
+const returnBtn2 = document.getElementById("return-btn2");
 
 var email,
   password,
@@ -93,23 +93,36 @@ createacctbtn.addEventListener("click", function () {
       });
   }
 });
-/*
+
 //reset password
 
 resetbutton.addEventListener("click", function () {
+  main.style.display = "none";
+  createacct.style.display = "none";
+  reset.style.display = "block";
+  
   var isVerified = true;
 
   resetPasswordEmail = resetpassword.value;
   
+}).catch(function(error) {
+  // An error happened.
+});
 if (isVerified) {
       }
   if (resetPasswordEmail == null) {
     window.alert("Please fill out all required fields.");
     isVerified = false;
   } else {
+    sendPasswordResetEmail(resetPasswordEmail).then(() => {
+  console.log('email sent!');})
+      .catch((error) {
+
+});
+      
   }
 });
-*/
+
 //submit button on main
 submitButton.addEventListener("click", function () {
   email = emailInput.value;
@@ -134,21 +147,31 @@ submitButton.addEventListener("click", function () {
     });
 });
 
-/*
+
 //reset button on main
 resetpasswordbutton.addEventListener("click", function () {
   main.style.display = "block";
+  createacct.style.display = "none";
+  reset.style.display = "none";
 });
-*/
+
 
 //sign up on main
 signupButton.addEventListener("click", function () {
   main.style.display = "none";
   createacct.style.display = "block";
+  reset.style.display = "none";
 });
 
 //return on createacct
 returnBtn.addEventListener("click", function () {
   main.style.display = "block";
   createacct.style.display = "none";
+  reset.style.display = "none";
+});
+
+returnBtn2.addEventListener("click", function () {
+  main.style.display = "none";
+  createacct.style.display = "none";
+  reset.style.display = "block";
 });
