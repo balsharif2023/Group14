@@ -8,6 +8,10 @@ import {
   ActionCodeSettings
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+const actionCodeSettings = {
+  url: 'https://financial-insights.glitch.me/signin.html',
+};
+
 const firebaseConfig = {
   apiKey: "AIzaSyCSTmzYfSzvHu-yavkMfaHzV0R35JVtlzA",
   authDomain: "financial-insight-975c5.firebaseapp.com",
@@ -118,16 +122,21 @@ resetbutton.addEventListener("click", function () {
 getAuth()
   .generatePasswordResetLink(resetPasswordEmail, ActionCodeSettings)
   .then((link) => {
+  <div>
   <p>Hello,</p>
   <p>Follow this link to reset your %APP_NAME% password for your %EMAIL% account.</p>
   <p><a href='%LINK%'>%LINK%</a></p>
   <p>If you didn’t ask to reset your password, you can ignore this email.</p>
   <p>Thanks,</p>
-  <p>Your %APP_NAME% team</p>
+  <p>Your Financial Insights team</p>
+  </div>
     return sendPasswordResetEmail(resetPasswordEmail, link);
   })
   .catch((error) => {
-    // Some error occurred.
+          const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("Error occurred. Try again.");
+      window.alert("Error occurred. Try again.")
   });
 });
 
