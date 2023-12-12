@@ -5,9 +5,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
-  ActionCodeSettings
+  ActionCodeSettings,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+/*
 const firebaseAdminServiceAccount = require("./serviceAccountKey.json");
 const firebaseAdmin = require('firebase-admin');
 firebaseAdmin.initializeApp({
@@ -19,6 +20,7 @@ const actionCodeSettings = {
 };
 const { CourierClient } = require("@trycourier/courier");
 const courier = CourierClient({ authorizationToken: "pk_prod_C9G32R67HG4D3JKFEPNWWR3PW8KM" });
+*/
 
 const firebaseConfig = {
   apiKey: "AIzaSyCSTmzYfSzvHu-yavkMfaHzV0R35JVtlzA",
@@ -63,7 +65,8 @@ var email,
   signupPassword,
   confirmSignupEmail,
   confirmSignUpPassword,
-  resetPasswordEmail;
+  resetPasswordEmail,
+  companyName;
 
 //on createacct page
 createacctbtn.addEventListener("click", function () {
@@ -111,11 +114,78 @@ createacctbtn.addEventListener("click", function () {
 });
 
 //reset password
+resetbutton.addEventListener("click", function () {
+  const firebaseAdmin = require("firebase-admin");
+  const firebaseAdminServiceAccount = require("src/login/serviceAccountKey.json");
+
+  const { CourierClient } = require("@trycourier/courier");
+  const courier = CourierClient({ authorizationToken: "pk_prod_C9G32R67HG4D3JKFEPNWWR3PW8KM" });
+
+  resetPasswordEmail = resetpassword.value;
+  companyName = "Financial Insights";
+
+  firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(firebaseAdminServiceAccount),
+  });
+
+  firebaseAdmin
+    .auth()
+    .generatePasswordResetLink(email)
+    .then(async (link) => {
+      return await sendResetEmail(
+        email,
+        name,
+        JSON.stringify(link),
+        companyName
+      );
+    })
+    .catch((error) => {
+      console.log("Error fetching user data:", error);
+    });
+
+  const sendResetEmail = async (email, name, link, companyName) => {
+    return await courier.send({
+      message: {
+        template: "AECHDSTFTVMCXSKKGYNT4F65ED5Q",
+        to: {
+          email: resetPasswordEmail,
+        },
+        routing: {
+          method: "single",
+          channels: ["email"],
+        },
+        data: {
+          passwordResetLink: link,
+          companyName: companyName,
+        },
+      },
+    });
+  };
+});
+/*
+const sendResetEmail = async (email, name, link, companyName) => {
+  return await courier.send({
+    message: {
+          template: "AECHDSTFTVMCXSKKGYNT4F65ED5Q",
+              to: {
+                email: email
+          },
+          routing: {
+                method: "single",
+                channels: ["email"]
+          },
+          data: {
+              userName: name,
+                passwordResetLink: link,
+              companyName:companyName
+          }
+    },
+  });
+}
 
 resetbutton.addEventListener("click", function () {
   resetPasswordEmail = resetpassword.value;
-
-  /*app.sendPasswordResetEmail(resetPasswordEmail)
+  app.sendPasswordResetEmail(resetPasswordEmail)
     .then(() => {
       console.log("email sent!");
     })
@@ -124,12 +194,19 @@ resetbutton.addEventListener("click", function () {
       const errorMessage = error.message;
       console.log("Error occurred. Try again.");
       window.alert("Error occurred. Try again.");
-    }); */
+    }); 
 // Admin SDK API to generate the email verification link.
 // Admin SDK API to generate the password reset link.
+  firebaseAdmin.auth().generatePasswordResetLink(email)
+    .then(async (link) => {
+          return await sendResetEmail(email, name, JSON.stringify(link), companyName)
+    })
+    .catch((error) => {
+          console.log('Error fetching user data:', error);
+    });
 
 });
-
+*/
 //submit button on main
 
 submitButton.addEventListener("click", function () {
