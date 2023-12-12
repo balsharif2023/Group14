@@ -8,6 +8,13 @@ import {
   ActionCodeSettings,
 } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 
+const firebaseAdmin = require("firebase-admin");
+const firebaseAdminServiceAccount = require("src/login/serviceAccountKey.json");
+
+const { CourierClient } = require("@trycourier/courier");
+const courier = CourierClient({
+  authorizationToken: "pk_prod_C9G32R67HG4D3JKFEPNWWR3PW8KM",
+});
 /*
 const firebaseAdminServiceAccount = require("./serviceAccountKey.json");
 const firebaseAdmin = require('firebase-admin');
@@ -114,15 +121,9 @@ createacctbtn.addEventListener("click", function () {
 });
 
 //reset password
+
 resetbutton.addEventListener("click", function () {
-  const firebaseAdmin = require("firebase-admin");
-  const firebaseAdminServiceAccount = require("src/login/serviceAccountKey.json");
-
-  const { CourierClient } = require("@trycourier/courier");
-  const courier = CourierClient({ authorizationToken: "pk_prod_C9G32R67HG4D3JKFEPNWWR3PW8KM" });
-
   resetPasswordEmail = resetpassword.value;
-  companyName = "Financial Insights";
 
   firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert(firebaseAdminServiceAccount),
@@ -130,20 +131,18 @@ resetbutton.addEventListener("click", function () {
 
   firebaseAdmin
     .auth()
-    .generatePasswordResetLink(email)
+    .generatePasswordResetLink(resetPasswordEmail)
     .then(async (link) => {
       return await sendResetEmail(
-        email,
-        name,
+        resetPasswordEmail,
         JSON.stringify(link),
-        companyName
       );
     })
     .catch((error) => {
       console.log("Error fetching user data:", error);
     });
 
-  const sendResetEmail = async (email, name, link, companyName) => {
+  const sendResetEmail = async (resetPasswordEmail, link) => {
     return await courier.send({
       message: {
         template: "AECHDSTFTVMCXSKKGYNT4F65ED5Q",
@@ -156,7 +155,6 @@ resetbutton.addEventListener("click", function () {
         },
         data: {
           passwordResetLink: link,
-          companyName: companyName,
         },
       },
     });
